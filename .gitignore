@@ -1,9 +1,3 @@
-# User specified:
-node_modules/
-Angular/**/
-bower.json
-bower_components/
-
 # Ignore thumbnails created by windows
 Thumbs.db
 
@@ -39,6 +33,9 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 ipch/
 *.opensdf
+node_modules/
+Angular/**/
+bower_components/
 
 # Ignore files build by ndk and eclipse
 libs/
