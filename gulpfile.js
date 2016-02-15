@@ -19,3 +19,5 @@ gulp.task('js', function () {
       .pipe(concat('app.min.js'))
       .pipe(gulp.dest('build'));
 });
+
+gulp.task('default', []);
