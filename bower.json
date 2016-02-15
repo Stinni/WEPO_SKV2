@@ -1,0 +1,19 @@
+{
+  "name": "chatserver",
+  "description": "WEPO Chat client assignment",
+  "main": "index.html",
+  "authors": [
+    "Stinni <kristinnf13@ru.is> & Sturla <sturlah13@ru.is>"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/Stinni/WEPO_SKV2",
+  "moduleType": [
+    "es6",
+    "node"
+  ],
+  "private": true,
+  "devDependencies": {
+    "angular": "^1.5.0",
+    "angular-route": "^1.5.0"
+  }
+}
