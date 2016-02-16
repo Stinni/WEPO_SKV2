@@ -1,0 +1,23 @@
+<div>
+	<div class="row">
+		<div class="col-xs-12">
+			<label>Username:</label>
+			<input type="text" ng-model="user" />
+		</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<label>Password:</label>
+			<input type="password" ng-model="pass" />
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<button ng-click="onLogin()">Login</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			{{errorMessage}}
+		</div>
+	</div>
+</div>

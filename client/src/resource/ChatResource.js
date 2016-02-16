@@ -2,11 +2,11 @@
 
 angular.module("chatApp").factory("ChatResource", function ChatResource() {
 	return {
-		login: function login(user) {
+		login: function login(user, pass) {
 
 		},
 		getRoomList: function getRoomList(callback) {
-			
+
 		}
 	}
 });
