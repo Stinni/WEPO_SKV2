@@ -1,16 +1,19 @@
 "use strict";
 
-angular.module("chatApp", ["ui.bootstrap"]).config(function($routeProvider) {
-	$routeProvider.when("/", {
-		templateUrl: "src/login/login.html",
+angular.module("chatApp", ["ng", "ngRoute", "ui.bootstrap"])
+.config(["$routeProvider", function($routeProvider) {
+	$routeProvider.when("/login", {
+		templateUrl: "login/login.html",
 		controller: "LoginController"
 	}).when("/roomlist", {
-		templateUrl: "src/roomlist/roomlist.html",
+		templateUrl: "roomlist/roomlist.html",
 		controller: "RoomListController"
 	}).when("/chatroom/:id", {
-		templateUrl: "src/chatroom/chatroom.html",
+		templateUrl: "chatroom/chatroom.html",
 		controller: "ChatRoomController"
+	}).when("/createroom", {
+		templateUrl: "createroom/createroom.html",
+		controller: "CreateRoomController"
 	}).otherwise({
-		templateUrl:"src/login/login.html",
-		controller: "LoginController"});
-});
+		redirectTo:"/login"});
+}]);

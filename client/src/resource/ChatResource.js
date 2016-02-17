@@ -8,5 +8,5 @@ angular.module("chatApp").factory("ChatResource", function ChatResource() {
 		getRoomList: function getRoomList(callback) {
 
 		}
-	}
+	};
 });

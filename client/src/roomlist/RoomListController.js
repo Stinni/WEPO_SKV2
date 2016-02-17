@@ -1,4 +1,4 @@
-angular.module("chatApp").controller("RoomListController", function RoomListController() {
+angular.module("chatApp").controller("RoomListController", ["$scope", function RoomListController($scope) {
 	$scope.roomlist = [{
 		name: "Chat Room 1",
 		id: 1
@@ -6,4 +6,4 @@ angular.module("chatApp").controller("RoomListController", function RoomListCont
 		name: "Chat Room 2",
 		id: 2
 	}];
-});
+}]);

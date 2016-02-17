@@ -1,6 +1,8 @@
 "use strict";
 
-angular.module("chatApp").controller("LoginController", function LoginController($scope, $Location, ChatResource) {
+angular.module("chatApp").controller("LoginController", ["$scope", "$http", "$location",
+	function LoginController($scope, $http, $location, ChatResource) {
+
 	$scope.errorMessage = "";
 	$scope.onLogin = function onLogin() {
 		ChatResource.login($scope.user, $scope.pass, function(success) {
@@ -10,5 +12,5 @@ angular.module("chatApp").controller("LoginController", function LoginController
 				$location("/roomlist");
 			}
 		});
-	}
-});
+	};
+}]);
