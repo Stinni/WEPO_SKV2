@@ -1,5 +1,6 @@
 "use strict";
 
-angular.module("chatApp").controller("CreateRoomController", function CreateRoomController($scope, $http, ChatResource) {
+angular.module('chatApp').controller('CreateRoomController', ['$scope', '$http', 'ChatResource',
+function CreateRoomController($scope, $http, ChatResource) {
 
-});
+}]);

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("chatApp").controller("LoginController", ["$scope", "$http", "$location",
+angular.module('chatApp').controller('LoginController', ['$scope', '$http', '$location',
 	function LoginController($scope, $http, $location, ChatResource) {
 
 	$scope.errorMessage = "";
