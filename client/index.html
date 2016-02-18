@@ -2,18 +2,32 @@
 <html ng-app="chatApp">
     <head>
         <meta charset="utf-8">
-        <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Angular Chat App</title>
+        <style>
+            #myHeader {background-color: #008080; color: white; padding: 14px; text-align: center;}
+        </style>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>This is the index.html file...</h1>
-        <ul>
-            <li><a href="#/login">Login Page</a></li>
-            <li><a href="#/createroom">Create Room Page</a></li>
-        </ul>
-
-        <div ng-view></div>
+        <div id="myHeader">
+            <h1 style="margin-left: 20px;">Angular Chat App<small></small></h1>
+        </div>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-2">
+                    <ul>
+                        <li><a href="#/login">Login Page</a></li>
+                    </ul>
+                </div>
+                <div class="col-xs-8">
+                    <div ng-view></div>
+                </div>
+                <div class="col-xs-2">
+                    <!-- TODO: ADD CONTENT ON THE RIGHT -->
+                </div>
+            </div>
+        </div>
         
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>

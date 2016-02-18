@@ -8,6 +8,7 @@ var source  = ['src/**/*.js', '!src/**/*.min.js'];
 gulp.task('minify', function () {
    gulp.src(source)
       .pipe(uglify())
+      .pipe(concat('chatApp.min.js'))
       .pipe(gulp.dest('build'))
 });
 
@@ -20,4 +21,4 @@ gulp.task('js', function () {
       .pipe(gulp.dest('build'));
 });
 
-gulp.task('default', []);
+gulp.task('default', ['js']);
