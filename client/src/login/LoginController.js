@@ -17,7 +17,7 @@ angular.module("chatApp").controller("LoginController", ["$scope", "$location", 
 				console.log(theUser); // For debugging TODO: DELETE!!!
 				$scope.$apply(function() {
 					$scope.errorMessage = "Login failed";
-					$scope.displayError = true;					
+					$scope.displayError = true;
 				});
 			} else {
 				$scope.$apply(function() {
@@ -26,7 +26,7 @@ angular.module("chatApp").controller("LoginController", ["$scope", "$location", 
 					console.log(theUser); // For debugging TODO: DELETE!!!
 					$scope.displayError = false;
 					$location.path("/roomlist");
-					$location.replace();					
+					$location.replace();
 				});
 			}
 		});

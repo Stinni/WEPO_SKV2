@@ -3,20 +3,28 @@
 angular.module("chatApp").factory("ChatResource", function() {
 	var socket = io.connect('http://localhost:8080');
 	return {
+		theSocket: function theSocket() {
+			return socket;
+		},
 		login: function login(username, callback) {
 			socket.emit("adduser", username, function(available){
 				console.log("ChatResource in login - socket.emit, the value returned is: " + available);
 				callback(available ? true : false);
 			});
 		},
-		getRoomlist: function getRoomlist(callback) {
-			socket.on("roomlist", function(listOfRooms) {
-				callback(listOfRooms);
-			});
+		getRoomlist: function getRoomlist() {
 			socket.emit("rooms");
 		},
 		joinRoom: function joinRoom(callback) {
 
+		},
+		createRoom: function createRoom(callback) {
+
+		},
+		logout: function logout(callback) {
+			console.log("logout function called in ChatResource");
+			socket.emit("disconnect");
+			callback();
 		}
 	};
 });
@@ -37,7 +45,7 @@ angular.module("chatApp").factory("ChatResource", function() {
 // The server responds by emitting the following events: "updateusers" (to all participants in the room), "updatetopic" (to the newly
 // joined user, not required to handle this), "servermessage" with the first parameter set to "join" ( to all participants in the room,
 // informing about the newly added user). If a new room is being created, the message "updatechat" is also emitted. 
- 
+
 // sendmsg
 // Should get called when a user wants to send a message to a room. 
 // Parameters:

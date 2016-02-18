@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row">
-        <div id="sidebars" class="col-xs-2">
+        <div class="col-xs-2 sidebars">
         	<div ng-hide="isLoggedIn" class="ng-hide">
 	            <ul class="nav nav-pills nav-stacked">
 	                <li><a href="#/login">Login</a></li>
@@ -33,11 +33,11 @@
 								<h2 class="media-heading" style="margin-top: 40px; margin-bottom: 30px;">Team members:</h2>
 								<strong>Kristinn Heiðar Freysteinsson</strong>
 								<address>
-				    				<strong>Email:</strong> <a href="mailto:kristinnf13@ru.is">kristinnf13@ru.is</a><br />
-				    			</address>
-				    			<strong>Sturla Halldórsson</strong>
-				    			<address>
-				    				<strong>Email:</strong> <a href="mailto:sturlah13@ru.is">sturlah13@ru.is</a><br />
+									<strong>Email:</strong> <a href="mailto:kristinnf13@ru.is">kristinnf13@ru.is</a><br />
+								</address>
+								<strong>Sturla Halldórsson</strong>
+								<address>
+									<strong>Email:</strong> <a href="mailto:sturlah13@ru.is">sturlah13@ru.is</a><br />
 								</address>
 							</div>
 							<div id="imageContainer" class="media-right">
@@ -49,9 +49,12 @@
 					</ul>
 				</div>
 			</div>
-        </div>
-        <div class="col-xs-2">
-            <!-- TODO: ADD CONTENT ON THE RIGHT -->
-        </div>
-    </div>
+		</div>
+		<div class="col-xs-2">
+			<div ng-hide="!isLoggedIn" class="ng-hide">
+				<h4>You are logged in as: {{username}}</h4>
+				<button class="btn btn-primary btn-sm" ng-click="onLogout()">Click to log out</button>
+			</div>
+		</div>
+	</div>
 </div>
