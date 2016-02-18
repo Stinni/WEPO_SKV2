@@ -13,6 +13,9 @@ angular.module("chatApp").factory("ChatResource", function() {
 				callback(listOfRooms);
 			});
 			socket.emit("rooms");
+		},
+		joinRoom: function joinRoom(callback) {
+			
 		}
 	};
 });

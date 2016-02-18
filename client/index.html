@@ -6,7 +6,8 @@
         <title>Angular Chat App</title>
         <style>
             #myHeader {background-color: #008080; color: white; padding: 14px; text-align: center;}
-            #leftSidebar {background-color: #C2F0F0;}
+            .sidebars {background-color: #C2F0F0;}
+            #myFooter {position: fixed; bottom: 0; width: 100%; background-color: #008080; color: white;}
         </style>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
     </head>
@@ -14,26 +15,26 @@
         <div id="myHeader">
             <h1 style="margin-left: 20px;">Angular Chat App<small></small></h1>
         </div>
-        <div class="container-fluid">
-            <div class="row">
-                <div id="leftSidebar" class="col-xs-2">
-                    <ul>
-                        <li><a href="#/login">Login Page</a></li>
-                    </ul>
-                </div>
-                <div class="col-xs-8">
-                    <div ng-view></div>
-                </div>
-                <div class="col-xs-2">
-                    <!-- TODO: ADD CONTENT ON THE RIGHT -->
-                </div>
-            </div>
-        </div>
+
+        <div ng-view></div>
         
+        <div id="myFooter" class="well well-sm">
+            <span class="glyphicon glyphicon-copyright-mark"></span>
+            <span class="h5">Kristinn H. Freysteinsson & Sturla Halldórsson - Skilaverkefni 2 - WEPO 2016</span>
+        </div>
+
+        <!--  This is for when it's ready. Using non minified versions for debugging and such...
         <script src="bower_components/angular/angular.min.js"></script>
         <script src="bower_components/angular-route/angular-route.min.js"></script>
         <script src="bower_components/angular-animate/angular-animate.min.js"></script>
         <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.min.js"></script>
+        -->
+
+        <script src="bower_components/angular/angular.js"></script>
+        <script src="bower_components/angular-route/angular-route.js"></script>
+        <script src="bower_components/angular-animate/angular-animate.js"></script>
+        <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
         <script src="http://localhost:8080/socket.io/socket.io.js"></script>
         <script src="build/chatApp.min.js"></script>
     </body>

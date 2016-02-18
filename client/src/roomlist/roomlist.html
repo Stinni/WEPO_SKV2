@@ -1,5 +1,30 @@
-<ul>
-	<li ng-repeat="(key, room) in roomlist">
-		<a ng-href="#/chatroom/{{key}}">{{room.topic}}</a>
-	</li>
-</ul>
+<div class="container-fluid">
+    <div class="row">
+        <div id="leftSidebar" class="col-xs-2">
+        	<div ng-hide="isLoggedIn" class="ng-hide">
+	            <ul class="nav nav-pills nav-stacked">
+	                <li><a href="#/login">Login</a></li>
+	                <li><a href="#/about">About</a></li>
+	            </ul>
+            </div>
+            <div ng-hide="!isLoggedIn" class="ng-hide">
+            	<ul class="nav nav-pills nav-stacked">
+	                <li><a href="#/roomlist">Roomlist</a></li>
+	                <li><a href="#/about">About</a></li>
+	            </ul>
+            </div>
+        </div>
+        <div class="col-xs-8">
+			<div style="padding: 20px;">
+				<ul>
+					<li ng-repeat="(key, room) in roomlist">
+						<a ng-href="#/chatroom/{{key}}">{{room.topic}}</a>
+					</li>
+				</ul>
+			</div>
+        </div>
+        <div class="col-xs-2">
+            <!-- TODO: ADD CONTENT ON THE RIGHT -->
+        </div>
+    </div>
+</div>

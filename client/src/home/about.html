@@ -1,0 +1,57 @@
+<div class="container-fluid">
+    <div class="row">
+        <div id="sidebars" class="col-xs-2">
+        	<div ng-hide="isLoggedIn" class="ng-hide">
+	            <ul class="nav nav-pills nav-stacked">
+	                <li><a href="#/login">Login</a></li>
+	                <li><a href="#/about">About</a></li>
+	            </ul>
+            </div>
+            <div ng-hide="!isLoggedIn" class="ng-hide">
+            	<ul class="nav nav-pills nav-stacked">
+	                <li><a href="#/roomlist">Roomlist</a></li>
+	                <li><a href="#/about">About</a></li>
+	            </ul>
+            </div>
+        </div>
+        <div class="col-xs-8">
+			<div style="padding: 20px;">
+				<div class="well well-lg">
+					<ul class="media-list">
+						<li class="media">
+							<div class="media-body">
+								<h2 class="media-heading" style="margin-bottom: 30px;">About the project development:</h2>
+								<p class="fix-right">...</p>
+								<h4>What we implemented:</h4>
+								<ul>
+									<li>...</li>
+									<li>...</li>
+									<li>...</li>
+									<li>...</li>
+								</ul>
+								<p class="fix-right" style="margin-top: 10px;">...</p>
+								<h2 class="media-heading" style="margin-top: 40px; margin-bottom: 30px;">Team members:</h2>
+								<strong>Kristinn Heiðar Freysteinsson</strong>
+								<address>
+				    				<strong>Email:</strong> <a href="mailto:kristinnf13@ru.is">kristinnf13@ru.is</a><br />
+				    			</address>
+				    			<strong>Sturla Halldórsson</strong>
+				    			<address>
+				    				<strong>Email:</strong> <a href="mailto:sturlah13@ru.is">sturlah13@ru.is</a><br />
+								</address>
+							</div>
+							<div id="imageContainer" class="media-right">
+								<a href="#">
+									<img src="http://i.giphy.com/l0NwrrUgOmNDpnkLm.gif" alt="Fuck it ALL!">
+								</a>
+							</div>
+						</li>
+					</ul>
+				</div>
+			</div>
+        </div>
+        <div class="col-xs-2">
+            <!-- TODO: ADD CONTENT ON THE RIGHT -->
+        </div>
+    </div>
+</div>

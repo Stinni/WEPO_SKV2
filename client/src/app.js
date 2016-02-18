@@ -2,12 +2,12 @@
 
 angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider", function($routeProvider) {
 	$routeProvider
-	.when("/", {
+	.when("/login", {
 		templateUrl: "src/login/login.html",
 		controller: "LoginController"
-	}).when("/login", {
-		templateUrl: "src/login/login.html",
-		controller: "LoginController"
+	}).when("/about", {
+		templateUrl: "src/home/about.html",
+		controller: "HomeController"
 	}).when("/roomlist", {
 		templateUrl: "src/roomlist/roomlist.html",
 		controller: "RoomlistController"
@@ -19,4 +19,7 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider",
 		controller: "CreateRoomController"
 	}).otherwise({
 		redirectTo:"/login"});
-}]);
+}]).constant("theUser", {
+	userName: "",
+	isLoggedIn: false
+});
