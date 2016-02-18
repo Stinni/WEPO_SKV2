@@ -1,11 +1,10 @@
 "use strict";
 
-angular.module("chatApp").controller("RoomlistController", ["$scope", function RoomlistController($scope) {
-	$scope.roomlist = [{
-		name: "Chat Room 1",
-		id: 1
-	}, {
-		name: "Chat Room 2",
-		id: 2
-	}];
+angular.module("chatApp").controller("RoomlistController", ["$scope", "ChatResource",
+	function RoomlistController($scope, ChatResource) {
+	$scope.roomlist = [];
+	ChatResource.getRoomlist(function(listOfRooms) {
+		$scope.roomlist = listOfRooms;
+		$scope.$apply();
+	});
 }]);

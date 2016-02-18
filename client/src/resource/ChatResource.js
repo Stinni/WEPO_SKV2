@@ -1,39 +1,27 @@
 "use strict";
 
-angular.module("chatApp").factory("ChatResource", ["$rootScope", function($rootScope) {
+angular.module("chatApp").factory("ChatResource", function() {
 	var socket = io.connect('http://localhost:8080');
 	return {
 		login: function login(username, callback) {
 			socket.emit("adduser", username, function(available){
-				console.log("login socket.emit called, returned: " + available);
 				callback(available ? true : false);
 			});
 		},
 		getRoomlist: function getRoomlist(callback) {
-
+			socket.on("roomlist", function(listOfRooms) {
+				callback(listOfRooms);
+			});
+			socket.emit("rooms");
 		}
 	};
-}]);
+});
 
 // The server supports the following commands:
 
 // adduser
-// Your application should call this when a user joins the application, after the user has chosen a nickname.
-// Parameters: 
-// the nick chosen by the user (string)
-// a callback function, which accepts a single boolean parameter, stating if the username is available or not.
-// Example:
-// socket.emit("adduser", "dabs", function(available){
-//     if (available){
-//         // The "dabs" username is not taken! 
-//     }
-// });
- 
 // rooms
-// Should get called to receive a list of available rooms. 
-// There are no parameters.
-// The server responds by emitting the "roomlist" event (the client needs to listen to this event from the server).
- 
+
 // joinroom
 // Should get called when a user wants to join a room. Note that the API supports a password-protected room, however this is optional, i.e. your implementation doesn't have to support this.
 // Parameters:
