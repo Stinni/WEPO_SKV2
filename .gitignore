@@ -1,3 +1,7 @@
+# User added folders and files
+node_modules/
+*.min.js
+
 # Ignore thumbnails created by windows
 Thumbs.db
 
@@ -33,7 +37,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 ipch/
 *.opensdf
-node_modules/
 
 # Ignore files build by ndk and eclipse
 libs/
