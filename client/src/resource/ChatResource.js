@@ -1,16 +1,19 @@
 "use strict";
 
-angular.module("chatApp").factory("ChatResource", function ChatResource() {
+angular.module("chatApp").factory("ChatResource", ["$rootScope", function($rootScope) {
 	var socket = io.connect('http://localhost:8080');
 	return {
-		login: function login(user) {
-
+		login: function login(username, callback) {
+			socket.emit("adduser", username, function(available){
+				console.log("login socket.emit called, returned: " + available);
+				callback(available ? true : false);
+			});
 		},
 		getRoomlist: function getRoomlist(callback) {
 
 		}
 	};
-});
+}]);
 
 // The server supports the following commands:
 
