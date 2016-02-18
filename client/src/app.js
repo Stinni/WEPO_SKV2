@@ -19,7 +19,7 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider",
 		controller: "CreateRoomController"
 	}).otherwise({
 		redirectTo:"/login"});
-}]).constant("theUser", {
+}]).value("theUser", {
 	userName: "",
 	isLoggedIn: false
 });
