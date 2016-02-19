@@ -18,7 +18,7 @@
 						</thead>
 						<tbody>
 							<tr ng-repeat="(key, room) in roomlist">
-								<td><a ng-href="" ng-click="temp = {{key}}; onJoin(temp)">{{key}}</td>
+								<td><a ng-href="#/chatroom/{{key}}">{{key}}</a></td>
 								<td>{{room.topic}}</td>
 							</tr>
 						</tbody>

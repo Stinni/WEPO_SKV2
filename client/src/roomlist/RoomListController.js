@@ -15,30 +15,9 @@ angular.module("chatApp").controller("RoomlistController", ["$scope", "$location
 	ChatResource.getRoomlist(function(listOfRooms) {
 		$scope.$apply(function() {
 			$scope.roomlist = listOfRooms;
+			console.log(listOfRooms);
 		});
 	});
-
-	$scope.onJoin = function onJoin(roomName) {
-		var roomToJoin = {
-			room: roomName,
-			pass: ""
-		};
-		ChatResource.joinRoom(roomToJoin, function(success, message) {
-			if (success) {
-				$scope.$apply(function() {
-					$scope.errorMessage = "Joining room failed: " + message;
-					$scope.displayJoinError = true;
-				});
-			} else {
-				$scope.$apply(function() {
-					$scope.errorMessage = "";
-					$scope.displayJoinError = false;
-					$location.path("/chatroom/" + roomName);
-					$location.replace();
-				});
-			}
-		});
-	};
 
 	$scope.onJoinCreate = function onJoinCreate() {
 		var newRoom = {
