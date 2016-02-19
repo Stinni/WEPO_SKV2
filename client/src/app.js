@@ -14,9 +14,6 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider",
 	}).when("/chatroom/:id", {
 		templateUrl: "src/chatroom/chatroom.html",
 		controller: "ChatRoomController"
-	}).when("/createroom", {
-		templateUrl: "src/createroom/createroom.html",
-		controller: "CreateRoomController"
 	}).otherwise({
 		redirectTo:"/login"});
 }]).value("theUser", {

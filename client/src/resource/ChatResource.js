@@ -3,23 +3,21 @@
 angular.module("chatApp").factory("ChatResource", function() {
 	var socket = io.connect('http://localhost:8080');
 	return {
-		theSocket: function theSocket() {
-			return socket;
-		},
 		login: function login(username, callback) {
 			socket.emit("adduser", username, function(available){
-				console.log("ChatResource in login - socket.emit, the value returned is: " + available);
 				callback(available ? true : false);
 			});
 		},
-		getRoomlist: function getRoomlist() {
+		getRoomlist: function getRoomlist(callback) {
+			socket.on("roomlist", function(listOfRooms) {
+				callback(listOfRooms);
+			});
 			socket.emit("rooms");
 		},
-		joinRoom: function joinRoom(callback) {
-
-		},
-		createRoom: function createRoom(callback) {
-
+		joinRoom: function joinRoom(roomToJoin, callback) {
+			socket.emit("joinroom", roomToJoin, function(success, message) {
+				callback(success ? true : false, message);
+			});
 		},
 		logout: function logout(callback) {
 			console.log("logout function called in ChatResource");
@@ -35,22 +33,23 @@ angular.module("chatApp").factory("ChatResource", function() {
 // rooms
 
 // joinroom
-// Should get called when a user wants to join a room. Note that the API supports a password-protected room, however this is optional,
-// i.e. your implementation doesn't have to support this.
+// Should get called when a user wants to join a room. Note that the API supports a password-protected room, however this
+// is optional, i.e. your implementation doesn't have to support this.
 // Parameters:
 // an object containing the following properties: { room: "the id of the room, undefined if the user is creating a new room",
 // pass: "a room password - not required"}
-// a callback function which accepts two parameters:  a boolean parameter, stating if the request was successful or not. and if not
-// (due to password protection or because of something else), the reason why the join wasn't successful.
-// The server responds by emitting the following events: "updateusers" (to all participants in the room), "updatetopic" (to the newly
-// joined user, not required to handle this), "servermessage" with the first parameter set to "join" ( to all participants in the room,
-// informing about the newly added user). If a new room is being created, the message "updatechat" is also emitted. 
+// a callback function which accepts two parameters:  a boolean parameter, stating if the request was successful or not.
+// and if not (due to password protection or because of something else), the reason why the join wasn't successful.
+// The server responds by emitting the following events: "updateusers" (to all participants in the room), "updatetopic"
+// (to the newly joined user, not required to handle this), "servermessage" with the first parameter set to "join" ( to all
+// participants in the room, informing about the newly added user). If a new room is being created, the message "updatechat"
+// is also emitted. 
 
 // sendmsg
 // Should get called when a user wants to send a message to a room. 
 // Parameters:
-// a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the first 200 chars are considered valid" }
-// The server will then emit the "updatechat" event, after the message has been accepted.
+// a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the
+// first 200 chars are considered valid" } The server will then emit the "updatechat" event, after the message has been accepted.
  
 // privatemsg
 // Used if the user wants to send a private message to another user.
