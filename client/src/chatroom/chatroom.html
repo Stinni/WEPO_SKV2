@@ -1,1 +1,27 @@
-<h1>ChatRoom Page</h1>
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-xs-2 sidebars">
+			<ul class="nav nav-pills nav-stacked">
+				<li><a href="#/roomlist">Roomlist</a></li>
+				<li><a href="#/about">About</a></li>
+			</ul>
+		</div>
+		<div class="col-xs-8">
+			<div style="padding: 20px;">
+				<!-- TODO: ADD CHAT! -->
+				<!--
+					A way to display an error message...
+					<div class="animate-hide" ng-show="displayJoinError">
+						<div class="alert alert-danger">
+							{{errorMessage}}
+						</div>
+					</div>
+				-->
+			</div>
+		</div>
+		<div class="col-xs-2">
+			<h4>You are logged in as: {{username}}</h4>
+			<button class="btn btn-primary btn-sm" ng-click="onLogout()">Click to log out</button>
+		</div>
+	</div>
+</div>

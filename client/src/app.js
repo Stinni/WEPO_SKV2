@@ -11,9 +11,12 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider",
 	}).when("/roomlist", {
 		templateUrl: "src/roomlist/roomlist.html",
 		controller: "RoomlistController"
-	}).when("/chatroom/:id", {
+	}).when("/chatroom/:roomKey", {
 		templateUrl: "src/chatroom/chatroom.html",
 		controller: "ChatRoomController"
+	}).when("/chatroom/", {
+		templateUrl: "src/roomlist/roomlist.html",
+		controller: "RoomlistController"
 	}).otherwise({
 		redirectTo:"/login"});
 }]).value("theUser", {
