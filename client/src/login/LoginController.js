@@ -2,11 +2,11 @@
 
 angular.module("chatApp").controller("LoginController", ["$scope", "$location", "ChatResource", "theUser",
 	function LoginController($scope, $location, ChatResource, theUser) {
-	console.log("Before the isLoggedIn is checked in LoginController:");
 	if (theUser.isLoggedIn) {
 		$location.path("/roomlist");
 		$location.replace();
 	}
+
 	$scope.username = "";
 	$scope.errorMessage = "";
 	$scope.displayError = false;

@@ -1,21 +1,30 @@
 "use strict";
 
-angular.module("chatApp").controller("RoomlistController", ["$scope", "$location", "ChatResource", "theUser",
-	function RoomlistController($scope, $location, ChatResource, theUser) {
+angular.module("chatApp").controller("RoomlistController", ["$scope", "$location", "SocketResource", "ChatResource", "theUser",
+	function RoomlistController($scope, $location, SocketResource, ChatResource, theUser) {
 	if (!theUser.isLoggedIn) {
 		$location.path("/login");
 		$location.replace();
 	}
+
+	var socket = SocketResource.theSocket();
 	$scope.username = theUser.userName;
 	$scope.roomlist = [];
 	$scope.roomName = "";
 
-	ChatResource.getRoomlist(function(listOfRooms) {
+	socket.on("roomlist", function(listOfRooms) {
 		$scope.$apply(function() {
 			$scope.roomlist = listOfRooms;
-			console.log(listOfRooms);
 		});
 	});
+
+	socket.on("servermessage", function(msg) {
+		if (msg === "join") {
+			ChatResource.getRoomlist();
+		}
+	});
+
+	ChatResource.getRoomlist();
 
 	$scope.onJoinCreate = function onJoinCreate() {
 		$location.path("/chatroom/" + $scope.roomName);

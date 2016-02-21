@@ -12,12 +12,12 @@
 					<table class="table table-bordered">
 						<thead>
 							<tr>
-								<td>Chatroom:</td>
-								<td>Topic:</td>
+								<td><b>Chatroom:</b></td>
+								<td><b>Topic:</b></td>
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="(key, room) in roomlist">
+							<tr ng-model="roomlist" ng-repeat="(key, room) in roomlist">
 								<td><a ng-href="#/chatroom/{{key}}">{{key}}</a></td>
 								<td>{{room.topic}}</td>
 							</tr>

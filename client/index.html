@@ -4,22 +4,22 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Angular Chat App</title>
-        <style>
-            #myHeader {background-color: #008080; color: white; padding: 14px; text-align: center;}
-            .sidebars {background-color: #C2F0F0;}
-            #myFooter {position: fixed; bottom: 0; width: 100%; background-color: #008080; color: white;}
-        </style>
         <link rel="shortcut icon" href=""> <!-- Added to get rid of favicon.ico not found error. -->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+        <link rel="stylesheet" href="src/app.css">
     </head>
     <body>
-        <div id="myHeader">
-            <h1 style="margin-left: 20px;">Angular Chat App<small></small></h1>
-        </div>
+        <div class="wrapper">
+            <div id="myHeader">
+                <h1 style="margin-left: 20px;">Angular Chat App<small></small></h1>
+            </div>
 
-        <div ng-view></div>
+            <div ng-view></div>
+
+            <div class="push"></div>
+        </div>
         
-        <div id="myFooter" class="well well-sm">
+        <div id="myFooter" class="well well-sm footer">
             <span class="glyphicon glyphicon-copyright-mark"></span>
             <span class="h5">Kristinn H. Freysteinsson & Sturla Halldórsson - Skilaverkefni 2 - WEPO 2016</span>
         </div>

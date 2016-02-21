@@ -1,17 +1,14 @@
 "use strict";
 
-angular.module("chatApp").factory("ChatResource", function() {
-	var socket = io.connect('http://localhost:8080');
+angular.module("chatApp").factory("ChatResource", ["SocketResource", function ChatResource(SocketResource) {
+	var socket = SocketResource.theSocket();
 	return {
 		login: function login(username, callback) {
 			socket.emit("adduser", username, function(available){
 				callback(available ? true : false);
 			});
 		},
-		getRoomlist: function getRoomlist(callback) {
-			socket.on("roomlist", function(listOfRooms) {
-				callback(listOfRooms);
-			});
+		getRoomlist: function getRoomlist() {
 			socket.emit("rooms");
 		},
 		joinRoom: function joinRoom(roomToJoin, callback) {
@@ -19,13 +16,22 @@ angular.module("chatApp").factory("ChatResource", function() {
 				callback(success ? true : false, message);
 			});
 		},
+		sendMessage: function sendMessage(msg) {
+			socket.emit("sendmsg", msg);
+		},
+		partRoom: function partRoom(room) {
+			console.log("partRoom function in ChatResource called...");
+			socket.emit("partroom", room);
+			socket.on("servermessage", function(msg) {
+				console.log("partRoom function in ChatResource picked up a servermessage with the message: " + msg);
+			});
+		},
 		logout: function logout(callback) {
-			console.log("logout function called in ChatResource");
 			socket.emit("disconnect");
 			callback();
 		}
 	};
-});
+}]);
 
 // The server supports the following commands:
 
@@ -37,25 +43,15 @@ angular.module("chatApp").factory("ChatResource", function() {
 // "updatetopic" (to the newly joined user, not required to handle this),
 // "servermessage" with the first parameter set to "join" ( to all participants in the room, informing about
 // the newly added user). If a new room is being created, the message "updatechat" is also emitted. 
-
 // sendmsg
-// Should get called when a user wants to send a message to a room. 
-// Parameters:
-// a single object containing the following properties: {roomName: "the room identifier", msg: "The message itself, only the
-// first 200 chars are considered valid" } The server will then emit the "updatechat" event, after the message has been accepted.
- 
+// partroom
+
 // privatemsg
 // Used if the user wants to send a private message to another user.
 // Parameters:
 // an object containing the following properties: {nick: "the userid which the message should be sent to", message: "The message itself" }
 // a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
 // The server will then emit the "recv_privatemsg" event to the user which should receive the message.
- 
-// partroom
-// Used when a user wants to leave a room.
-// Parameters:
-// a single string, i.e. the ID of the room which the user is leaving.
-// The server will then emit the "updateusers" event to the remaining users in the room, and a "servermessage" with the first parameter set to "part".
  
 // disconnect
 // Used when a user leaves the chat application.
