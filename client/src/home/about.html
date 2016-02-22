@@ -10,6 +10,7 @@
             <div ng-hide="!isLoggedIn" class="ng-hide">
             	<ul class="nav nav-pills nav-stacked">
 	                <li><a href="#/roomlist">Roomlist</a></li>
+	                <li><a href="#/private">Private Messages</a></li>
 	                <li><a href="#/about">About</a></li>
 	            </ul>
             </div>
@@ -52,8 +53,9 @@
 		</div>
 		<div class="col-xs-2">
 			<div ng-hide="!isLoggedIn" class="ng-hide">
-				<h4>You are logged in as: {{username}}</h4>
-				<button class="btn btn-primary btn-sm" ng-click="onLogout()">Click to log out</button>
+				<h4>You are logged in as:</h4>
+				<h3>{{username}}</h3>
+				<button class="btn btn-warning btn-sm" ng-click="onLogout()">Click to log out</button>
 			</div>
 		</div>
 	</div>

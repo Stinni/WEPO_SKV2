@@ -1,19 +1,18 @@
 "use strict";
 
-angular.module("chatApp").controller("ChatRoomController", ["$scope", "$routeParams", "$location", "SocketResource", "ChatResource", "theUser",
+angular.module("chatApp").controller("PrivateChatController", ["$scope", "$routeParams", "$location", "SocketResource", "ChatResource", "theUser",
 	function ChatRoomController($scope, $routeParams, $location, SocketResource, ChatResource, theUser) {
 	if (!theUser.isLoggedIn) {
 		$location.path("/login");
 		$location.replace();
+	} else if ($routeParams.user === theUser.userName) {
+		$location.path("/private");
+		$location.replace();
 	} else {
 		var socket = SocketResource.theSocket();
 		$scope.username = theUser.userName;
-		$scope.roomKey = $routeParams.roomKey;
-		$scope.errorMessage = "";
-		$scope.displayError = false;
-		$scope.messages = [];
-		$scope.listOfOps = [];
-		$scope.listOfUsers = [];
+		$scope.otherUser = $routeParams.user;
+		$scope.messages = theUser[$scope.otherUser] === undefined ? theUser[$scope.otherUser] : [];
 		$scope.msgToSend = "";
 
 		ChatResource.joinRoom({room: $routeParams.roomKey, pass: ""}, function(success, message) {

@@ -1,6 +1,6 @@
 "use strict";
 
-angular.module("chatApp").controller("ChatRoomController", ["$scope", "$routeParams", "$location", "SocketResource", "ChatResource", "theUser",
+angular.module("chatApp").controller("PrivateController", ["$scope", "$routeParams", "$location", "SocketResource", "ChatResource", "theUser",
 	function ChatRoomController($scope, $routeParams, $location, SocketResource, ChatResource, theUser) {
 	if (!theUser.isLoggedIn) {
 		$location.path("/login");

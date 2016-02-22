@@ -3,17 +3,18 @@
 		<div class="col-xs-2 sidebars">
 			<ul class="nav nav-pills nav-stacked">
 				<li><a href="#/roomlist">Roomlist</a></li>
+				<li><a href="#/private">Private Messages</a></li>
 				<li><a href="#/about">About</a></li>
 			</ul>
 		</div>
 		<div class="col-xs-8">
 			<div style="padding: 20px;">
 				<div class="well">
-					<table class="table table-bordered">
+					<table class="table table-striped table-bordered table-hover table-condensed">
 						<thead>
 							<tr>
-								<td><b>Chatroom:</b></td>
-								<td><b>Topic:</b></td>
+								<th><b>Chatroom:</b></th>
+								<th><b>Topic:</b></th>
 							</tr>
 						</thead>
 						<tbody>
@@ -27,7 +28,7 @@
 						<form role="form" name="joinCreateForm">
 							<div class="form-group">
 								<label for="roomName" class="control-label">Join/Create Room:</label>
-								<input type="text" ng-model="roomName" ng-pattern="/^\s*\w*\s*$/" class="form-control" id="roomName" placeholder="Type the room name here" required>
+								<input type="text" ng-model="roomName" ng-pattern="/^[a-zA-Z0-9áÁéÉúÚíÍýÝóÓðÐæÆöÖþÞ]*$/" class="form-control" id="roomName" placeholder="Type the room name here" required>
 							</div>
 							<div class="form-group">
 								<button class="btn btn-primary" ng-click="onJoinCreate()" ng-disabled="joinCreateForm.$invalid" title="{{(joinCreateForm.$invalid) ? 'A room name can only be ONE word with NO whitespaces or symbols' : ''}}">Join/Create Room</button>
@@ -38,8 +39,9 @@
 			</div>
 		</div>
 		<div class="col-xs-2">
-			<h4>You are logged in as: {{username}}</h4>
-			<button class="btn btn-primary btn-sm" ng-click="onLogout()">Click to log out</button>
+			<h4>You are logged in as:</h4>
+			<h3>{{username}}</h3>
+			<button class="btn btn-warning btn-sm" ng-click="onLogout()">Click to log out</button>
 		</div>
 	</div>
 </div>

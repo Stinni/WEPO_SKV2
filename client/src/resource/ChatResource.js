@@ -20,11 +20,7 @@ angular.module("chatApp").factory("ChatResource", ["SocketResource", function Ch
 			socket.emit("sendmsg", msg);
 		},
 		partRoom: function partRoom(room) {
-			console.log("partRoom function in ChatResource called...");
 			socket.emit("partroom", room);
-			socket.on("servermessage", function(msg) {
-				console.log("partRoom function in ChatResource picked up a servermessage with the message: " + msg);
-			});
 		},
 		logout: function logout(callback) {
 			socket.emit("disconnect");
@@ -45,6 +41,7 @@ angular.module("chatApp").factory("ChatResource", ["SocketResource", function Ch
 // the newly added user). If a new room is being created, the message "updatechat" is also emitted. 
 // sendmsg
 // partroom
+// disconnect
 
 // privatemsg
 // Used if the user wants to send a private message to another user.
@@ -52,19 +49,14 @@ angular.module("chatApp").factory("ChatResource", ["SocketResource", function Ch
 // an object containing the following properties: {nick: "the userid which the message should be sent to", message: "The message itself" }
 // a callback function, accepting a single boolean parameter, stating if the message could be sent or not.
 // The server will then emit the "recv_privatemsg" event to the user which should receive the message.
- 
-// disconnect
-// Used when a user leaves the chat application.
-// There are no parameters.
-// The server will emit the following events: "updateusers" to each room the user had joined (and hadn't explicitly left), "servermessage" with the first parameter set to "quit".
- 
+
 // kick
 // When a room creator wants to kick a user from the room.
 // Parameters:
 // an object containing the following properties: { user : "The username of the user being kicked", room: "The ID of the room"
 // a callback function, accepting a single boolean parameter, stating if the user could be kicked or not.
 // The server will emit the following events if the user was successfully kicked: "kicked" to the user being kicked, and "updateusers" to the rest of the users in the room.
- 
+
 // ban
 // Allows an operator to ban another user from a room.
 // Parameters:

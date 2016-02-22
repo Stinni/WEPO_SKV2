@@ -1,4 +1,5 @@
 # User added folders and files
+client/build/
 node_modules/
 *.min.js
 

@@ -17,9 +17,19 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider",
 	}).when("/chatroom/", {
 		templateUrl: "src/roomlist/roomlist.html",
 		controller: "RoomlistController"
+	}).when("/private", {
+		templateUrl: "src/privatechat/private.html",
+		controller: "PrivateController"
+	}).when("/privatechat/:user", {
+		templateUrl: "src/privatechat/privatechat.html",
+		controller: "PrivateChatController"
+	}).when("/privatechat/", {
+		templateUrl: "src/roomlist/roomlist.html",
+		controller: "RoomlistController"
 	}).otherwise({
 		redirectTo:"/login"});
 }]).value("theUser", {
 	userName: "",
-	isLoggedIn: false
+	isLoggedIn: false,
+	prvtMessages: []
 });
