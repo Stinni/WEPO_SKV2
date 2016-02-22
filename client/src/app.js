@@ -31,5 +31,5 @@ angular.module("chatApp", ["ngRoute", "ui.bootstrap"]).config(["$routeProvider",
 }]).value("theUser", {
 	userName: "",
 	isLoggedIn: false,
-	prvtMessages: []
+	prvtMessages: {}
 });

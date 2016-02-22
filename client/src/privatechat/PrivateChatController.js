@@ -12,52 +12,29 @@ angular.module("chatApp").controller("PrivateChatController", ["$scope", "$route
 		var socket = SocketResource.theSocket();
 		$scope.username = theUser.userName;
 		$scope.otherUser = $routeParams.user;
-		$scope.messages = theUser[$scope.otherUser] === undefined ? theUser[$scope.otherUser] : [];
+		$scope.prvtMessages = (theUser.prvtMessages[$scope.otherUser] === undefined ? theUser[$scope.otherUser] : []);
 		$scope.msgToSend = "";
 
-		ChatResource.joinRoom({room: $routeParams.roomKey, pass: ""}, function(success, message) {
-			if (!success) {
-				$scope.$apply(function() {
-					$scope.errorMessage = "Joining/Creating room failed.\n The reason the server sends is: " + message;
-					$scope.displayError = true;
-				});
-			} else {
-				$scope.$apply(function() {
-					$scope.errorMessage = "";
-					$scope.displayError = false;
-				});
+		socket.on("recv_privatemsg", function(usr, msg) {
+			if (theUser.prvtMessages[$scope.otherUser] === undefined) {
+				theUser.prvtMessages[$scope.otherUser] = [];
 			}
+
+			theUser.prvtMessages[$scope.otherUser].push({nick: usr, message: msg});
+			$scope.$apply(function() {
+				$scope.prvtMessages = theUser.prvtMessages[$scope.otherUser];
+			});
 		});
 
-		$scope.onSendMsg = function onSendMsg() {
-			ChatResource.sendMessage({roomName: $scope.roomKey, msg: $scope.msgToSend});
+		$scope.onSendPrvtMsg = function onSendPrvtMsg() {
+			if (theUser.prvtMessages[$scope.otherUser] === undefined) {
+				theUser.prvtMessages[$scope.otherUser] = [];
+			}
+
+			theUser.prvtMessages[$scope.otherUser].push({nick: $scope.username, message: $scope.msgToSend});
+			ChatResource.sendPrivateMessage({nick: $scope.otherUser, message: $scope.msgToSend});
+			$scope.prvtMessages = theUser.prvtMessages[$scope.otherUser];
 			$scope.msgToSend = "";
-		};
-
-		socket.on("updatechat", function(room, msgList) {
-			if (room === $scope.roomKey) {
-				$scope.$apply(function() {
-					$scope.messages = msgList;
-				});
-			}
-		});
-
-		socket.on("updateusers", function(room, users, ops) {
-			if (room === $scope.roomKey) {
-				$scope.$apply(function() {
-					$scope.listOfOps = ops;
-					$scope.listOfUsers = users;
-				});
-			}
-		});
-
-		$scope.$on("$locationChangeStart", function(event, next, current) {
-			ChatResource.partRoom($scope.roomKey);
-		});
-
-		$scope.onPartRoom = function onPartRoom() {
-			$location.path("/roomlist");
-			$location.replace();
 		};
 
 		$scope.onLogout = function onLogout() {

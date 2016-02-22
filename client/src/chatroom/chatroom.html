@@ -11,14 +11,14 @@
 			<div style="padding: 20px;">
 				<div class="animate-hide" ng-show="!displayError">
 					<div class="row">
-						<div class="col-xs-8">
-							<div id="chatRoomHeader" class="well well-sm">
-								<h2>{{roomKey}}</h2>
-							</div>
+						<div class="well well-sm customHeader">
+							<h2>{{roomKey}}</h2>
+						</div>
+						<div class="col-xs-8" style="padding-left: 0px; padding-right: 0px;">
 							<div class="well well-sm">
 								<form role="form" name="sendMsgForm">
 									<div class="form-group">
-										<textarea ng-model="msgToSend" class="form-control" id="msgToSend" placeholder="Write your message here" required>Write your message here...</textarea>
+										<textarea ng-model="msgToSend" class="form-control" id="msgToSend" required>Write your message here...</textarea>
 									</div>
 								</form>
 								<div class="row">
@@ -32,7 +32,7 @@
 							</div>
 							<div class="wrapper">
 								<div id="theChat" class="well well-sm">
-									<div class="media" ng-model="messages" ng-repeat="msg in messages.slice().reverse() track by msg.timestamp">
+									<div class="media" ng-model="messages" ng-repeat="msg in messages | orderBy: '-timestamp'">
 										<div class="media-body">
 											<h4 class="media-heading">{{msg.nick}}<small> - {{msg.timestamp | date:"dd/MM/yyyy 'at' HH:mm"}}</small></h4>
 											{{msg.message}}
@@ -41,8 +41,8 @@
 								</div>
 							</div>
 						</div>
-						<div class="col-xs-4">
-							<div class="well well-sm">
+						<div class="col-xs-4" style="padding-right: 0px;">
+							<div id="usersInRoom" class="well well-sm">
 								<h4>Users in room:</h4>
 								<ul>
 									<li ng-model="listOfOps" ng-repeat="op in listOfOps"><b><a ng-href="#/privatechat/{{op}}">{{op}}</a></b></li>

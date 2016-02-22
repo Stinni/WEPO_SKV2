@@ -40,10 +40,15 @@ body {
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
-#chatRoomHeader {
+.customHeader {
 	text-align: center;
+}
+#usersInRoom {
+	max-height: 600px;
+	overflow-y: scroll;
+	overflow-x: hidden;
 }
 ul
 {
-    list-style-type: none;
+	list-style-type: none;
 }

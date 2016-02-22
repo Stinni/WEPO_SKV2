@@ -22,6 +22,12 @@ angular.module("chatApp").factory("ChatResource", ["SocketResource", function Ch
 		partRoom: function partRoom(room) {
 			socket.emit("partroom", room);
 		},
+		getListOfUsers: function getListOfUsers() {
+			socket.emit("users");
+		},
+		sendPrivateMessage: function sendPrivateMessage(msg) {
+			socket.emit("privatemsg", msg);
+		},
 		logout: function logout(callback) {
 			socket.emit("disconnect");
 			callback();
@@ -29,6 +35,18 @@ angular.module("chatApp").factory("ChatResource", ["SocketResource", function Ch
 	};
 }]);
 
+
+	// socket.on('privatemsg', function (msgObj, fn) {
+
+	// 	//If user exists in global user list.
+	// 	if(users[msgObj.nick] !== undefined) {
+	// 		//Send the message only to this user.
+	// 		users[msgObj.nick].socket.emit('recv_privatemsg', socket.username, msgObj.message);
+	// 		//Callback recieves true.
+	// 		fn(true);
+	// 	}
+	// 	fn(false);
+	// });
 // The server supports the following commands:
 
 // adduser
