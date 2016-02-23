@@ -22,15 +22,30 @@
 						<li class="media">
 							<div class="media-body">
 								<h2 class="media-heading" style="margin-bottom: 30px;">About the project development:</h2>
-								<p class="fix-right">...</p>
 								<h4>What we implemented:</h4>
-								<ul>
-									<li>...</li>
-									<li>...</li>
-									<li>...</li>
-									<li>...</li>
+								<ul style="list-style-type: circle;">
+									<li>The user is, upon arrival, able to specify his/her name/nick. If the nickname is free, i.e. no other user is currently active with the same name, (s)he proceeds, otherwise a new nick must be provided.</li>
+									<li>After the user has identified, (s)he can see a list of chat rooms that're already active.</li>
+									<li>The user is able to join a chat room, and leave a room as well. It is of course also possible to create a new room.</li>
+									<li>Inside a given room, the user is able to send messages to the room, see previous messages, and see new messages appear in real time (without having to refresh the page manually).</li>
 								</ul>
-								<p class="fix-right" style="margin-top: 10px;">...</p>
+								<h4>In addition:</h4>
+								<ul style="list-style-type: circle;">
+									<li>Each component (controller, factory, etc.) is in a single file. And they're minified and concatenated when prepared for production by using gulp tasks.</li>
+									<li>All external dependencies (AngularJS etc.) are installed by using npm and bower.</li>
+									<li> The code goes through JSHint without warnings. A gulp file is included to ensure that running jshint is easy. A .jshintrc file is also included with the options provided on Myschool.</li>
+								</ul>
+								<h4>And more:</h4>
+								<ul style="list-style-type: circle;">
+									<li>The current username and logged in status (along with private messages) is stored in a variable called "theUser."</li>
+									<li>"Minimum" security is provided by checking "theUser" logged in status in each controller and changing the url to the login screen if one's not logged in.</li>
+									<li>Usernames and chatroom names can only be one word and no symbols. We used ng-pattern to implement that.</li>
+									<li>Buttons for logging in, joining or creating a chatroom and sending messages are disabled if empty or invalid in any way.</li>
+									<li>Button titles only appear when they're disabled to provide a possible reason for them being disabled.</li>
+									<li>Leaving a chatroom works by either clicking the "Leave Room" button, by changing the url or by clicking the links on the left. When the url changes, the user is logged out of that room.</li>
+									<li>On the list of useres in a room, the ops are in bold.</li>
+									<li>Private chat didn't work in the end up but one can click the links for the users in a chatroom to open up a private chat. Clicking your own name there will transfer you to the list of all logged on users.</li>
+								</ul>
 								<h2 class="media-heading" style="margin-top: 40px; margin-bottom: 30px;">Team members:</h2>
 								<strong>Kristinn Heiðar Freysteinsson</strong>
 								<address>
@@ -43,7 +58,7 @@
 							</div>
 							<div id="imageContainer" class="media-right">
 								<a href="#">
-									<img src="http://i.giphy.com/l0NwrrUgOmNDpnkLm.gif" alt="Fuck it ALL!">
+									<img src="http://i.giphy.com/l0NwrrUgOmNDpnkLm.gif" alt="Fuck it ALL! :D">
 								</a>
 							</div>
 						</li>

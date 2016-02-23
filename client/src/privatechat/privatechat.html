@@ -24,6 +24,11 @@
 								</div>
 							</form>
 						</div>
+						<div class="animate-hide" ng-show="displayError">
+							<div class="alert alert-danger">
+								{{errorMessage}}
+							</div>
+						</div>
 						<div class="wrapper">
 							<div id="theChat" class="well well-sm">
 								<div class="media" ng-model="prvtMessages" ng-repeat="msg in prvtMessages.slice().reverse()">

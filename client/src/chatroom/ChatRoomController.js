@@ -19,7 +19,7 @@ angular.module("chatApp").controller("ChatRoomController", ["$scope", "$routePar
 		ChatResource.joinRoom({room: $routeParams.roomKey, pass: ""}, function(success, message) {
 			if (!success) {
 				$scope.$apply(function() {
-					$scope.errorMessage = "Joining/Creating room failed.\n The reason the server sends is: " + message;
+					$scope.errorMessage = "Joining/Creating room failed. The message that the server sends is: " + message;
 					$scope.displayError = true;
 				});
 			} else {

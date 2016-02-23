@@ -25,8 +25,11 @@ angular.module("chatApp").factory("ChatResource", ["SocketResource", function Ch
 		getListOfUsers: function getListOfUsers() {
 			socket.emit("users");
 		},
-		sendPrivateMessage: function sendPrivateMessage(msg) {
-			socket.emit("privatemsg", msg);
+		sendPrivateMessage: function sendPrivateMessage(msg, callback) {
+			console.log("sendPrivateMessage function called in ChatResource");
+			socket.emit("privatemsg", msg, function(success) {
+				callback(success ? true : false);
+			});
 		},
 		logout: function logout(callback) {
 			socket.emit("disconnect");
